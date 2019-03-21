@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/ajax.js" type="text/javascript"></script>
+    <title></title>
+    <script type="text/javascript">
+        function init() {
+            var value = document.getElementById("name");
+            if (value == null || value == "") {
+                document.getElementById("error").style.display = "block";
+                return false;
+            }
+        }
+        $(function () {
+            $(".kw_info").click(function () {
+                $(this).hide();
+                $(this).siblings("input").focus();
+            });
+            $(".kw input").click(function () {
+                $(this).siblings(".kw_info").hide();
+            });
+            $(".kw input").blur(function () {
+                if ($(this).val() == "") {
+                    $(this).siblings(".kw_info").show();
+                }
+            });
+            $(".kw input").each(function (index, item) {
+                if ($(this).val() != "") {
+                    $(this).siblings(".kw_info").hide();
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        .kw{ display:inline; position:relative; line-height:24px;}
+        .kw input{ z-index:10;}
+        .kw_info{ display:inline-block; position:absolute; left:3px; top:0px; color:#ccc; z-index:1; cursor:text; }
+    </style>
+</head>
+<body>
+<input type="text" id="name" name="name" onblur="init()" /><span id="error" style="display:none;">不能为空</span><!--<input type="button" value="提交"/>-->
+<div class="kw">
+    <input type="text" id="txt" name="address"/>
+    <label class="kw_info">请输入用户名</label>
+</div>
+</body>
+</html>

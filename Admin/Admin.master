@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_MasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <%--调用CSS文件夹中的MasterPage.css样式表--%>
+
+    <link href="../CSS/MasterPage.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.8.2.js" type="text/javascript"></script>
+    <%-- 调用js文件中的特效：显示天气和时间--%>
+    <script src="../js/teXiao.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body onload="T()">
+    <form id="form1" runat="server">
+  <div id="page">
+
+     <%--头标签--%>
+ <div id="hdDiv">
+  
+  <asp:Label ID="Label1" runat="server" BackColor="#99CCFF"></asp:Label>
+  </div> 
+   </div>
+
+      <%-- 导航栏部分--%>
+<div id="title">
+   <div id="titleLeft">
+    <a href="userManager.aspx">用户管理</a>
+    <a href="wordManager.aspx">留言管理</a>
+    <a href="articleManager.aspx">日志管理</a>
+
+<%--  放置一个注销按钮--%><%--设为主页和收藏网站 这里假设网站域名是我姓名拼音的三个首字母--%>
+<%--<a href="" onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.xpy.com');">设为主页</a>--%>
+<a href="javascript:window.external.AddFavorite('http://www.xpy.com','个人博客')" >添加收藏</a>&nbsp;
+ <asp:Label ID="lblName" runat="server"></asp:Label>
+       &nbsp;
+</div>
+  <div id="titleRight">
+    <span id="time"></span>
+  </div>
+  <asp:LinkButton ID="loginOut" Text="" runat="server" CausesValidation="False" onclick="loginOut_Click" Font-Underline="False"></asp:LinkButton>
+</div>
+
+<div id="content">
+
+<div id="contentLeft">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <%--用于显示天气--%>
+  <div>
+    <div id="city"></div>
+    <div id="weather"></div>
+  </div>
+    <asp:Panel ID="Panel1" Width="200px" Height="80px" runat="server"  HorizontalAlign="Center" BackColor="#CCFFFF" Font-Size="XX-Small">
+        <br />
+        <br />
+        <br />
+        登录后你的信
+        <br /> 
+        息将在这里出现
+    </asp:Panel>
+    <asp:Panel ID="Panel2" runat="server">
+    <div id="user">管理员</div>
+        <br />
+        <asp:Image ID="Image1" runat="server" Height="104px" Width="103px" />
+        <br />
+        <br />
+    </asp:Panel>
+     <div>
+         <%-- 放广告部分--%>
+   <asp:Panel ID="Panel3" Width="200" Height="30" BackColor="Yellow" 
+        runat="server">
+    </asp:Panel>
+    <asp:RoundedCornersExtender ID="RoundedCornersExtender1" TargetControlID="Panel3" Radius="12" Corners="Top" BorderColor="#006600" Color="Yellow"  runat="server">     
+    </asp:RoundedCornersExtender>
+    <asp:Panel ID="Panel4" Width="200" Font-Size="11" Height="100px" BackColor="White" 
+runat="server">
+<%--跑马灯：behavior=scroll, slide, alternate 跑马方式：循环绕行，只跑一次就停住，来回往复运动 direction="up" 方向 从下到上  scrollamount="" 设置数值越大，速度越快 hspace="5" 跑马灯与旁边的距离 --%>
+<marquee behavior="scroll" direction="up" align="down" scrollamount="3" hspace="5" onmouseout="start()" onmouseover="stop()" style="height: 98px; width: 188px"> 欢迎光临本网站，在这里我们将一起分享心得、经验。这里是一个大家庭，每个成员都是家庭的一分子，希望每个人或多后少做点贡献</marquee>
+    </asp:Panel>
+      <asp:RoundedCornersExtender ID="RoundedCornersExtender2"  Radius="12" Corners="Bottom" TargetControlID="Panel4" BorderColor="#006600" runat="server">         
+      </asp:RoundedCornersExtender>
+     </div>
+</div>
+<div id="contentRight">
+  <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+
+  </asp:ContentPlaceHolder>
+
+</div>
+
+</div>
+
+
+<div id="bottomDiv">
+<a href="http://www.baidu.com/">杨盈的blog</a>
+   </div>
+       
+    </form>
+</body>
+</html>
